@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>One Page Weather App</title>
+  <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <div class="container-fluid custom-container" ng-app="weatherApp" ng-controller="weatherController" ng-cloak>
+    <div class="row weather-panel-container">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 weather-left-panel">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="text-center">Welcome to my weather app</h2>
+          </div>
+        </div>
+        <div class="row weather-left-form">
+          <div class="col-xs-12">
+            <input type="text" class="city-search" placeholder="Search for a city" ng-model="city" ng-click="clearInput()" ng-change="getWeather(null,city)" ng-model-options="{debounce:1000}" ng-disabled="loadingData">
+            <div class="reset-history" ng-if="history.length">
+              <p class="pull-left">SEARCH HISTORY</p>
+              <button type="button" class="reset-history-button" ng-click="resetLocal()"><span class="glyphicon glyphicon-remove"></span>
+              </button>
+              <ul class="history-list">
+                <li class="history-link" ng-repeat="item in history">
+                  <a href="#" ng-click="getWeather(item.id,item.name)" ng-bind="item.name"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 weather-right-panel">
+        <div class="row text-center" ng-if="weatherError">
+          <h1><span class="icon-404 large-weather-icon"></span></h1>
+          <h2>We are sorry. The city you requested was not found.</h2>
+        </div>
+        <div class="row" ng-if="weather">
+          <div class="col-xs-12 text-center">
+            <h1><span ng-bind="weather.name"></span>, <span ng-bind="weather.sys.country"></span></h1>
+            <p>weather time:<span ng-bind="weather.dt*1000 | date: 'medium'"></span>
+            </p>
+            <div class="weather-report-panel">
+              <h2><span ng-class="'icon-' + weather.weather[0].icon" class="large-weather-icon"></h2>
+              <h4 ng-bind="weather.weather[0].main"></h4>
+              <h1><span ng-bind="weather.main.temp"></span>&#176;C</h1>
+              <h4>min: <span ng-bind="weather.main.temp_min"></span> &#176;C | max: <span ng-bind="weather.main.temp_max"></span> &#176;C</h4>
+            </div>
+            <table class="table">
+              <tr ng-if="weather.wind.speed">
+                <td>Wind</td>
+                <td ng-bind="weather.wind.speed + ' m/s'"></td>
+              </tr>
+              <tr ng-if="weather.clouds.all">
+                <td>Cloudiness</td>
+                <td ng-bind="weather.clouds.all + ' %'"></td>
+              </tr>
+              <tr ng-if="weather.main.pressure">
+                <td>Pressure</td>
+                <td ng-bind="weather.main.pressure + ' hpa'"></td>
+              </tr>
+              <tr ng-if="weather.main.humidity">
+                <td>Humidity</td>
+                <td ng-bind="weather.main.humidity + ' %'"></td>
+              </tr>
+              <tr ng-if="weather.sys.sunrise">
+                <td>Sunrise</td>
+                <td ng-bind="weather.sys.sunrise*1000 | date: 'shortTime'"></td>
+              </tr>
+              <tr ng-if="weather.sys.sunset">
+                <td>Sunset</td>
+                <td ng-bind="weather.sys.sunset*1000 | date: 'shortTime'"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weather-loading-container" ng-if="loadingData">
+      <div class="weather-loading-overlay"></div>
+      <div class="weather-loading-modal">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/libs/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+  <script src="assets/libs/angular.min.js"></script>
+  <script src="assets/libs/ngStorage.min.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/app.controller.js"></script>
+  <script src="app/services/weatherServices.js"></script>
+  <script src="app/services/storageServices.js"></script>
+  <script src="app/services/dataServices.js"></script>
+</body>
+
+</html>

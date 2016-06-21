@@ -1,0 +1,253 @@
+/*
+ ANGULAR SINGLE PAGE WEATHER APP - STYLES
+  Version: 1.0
+  Creator: Bogdan Suciu
+  Description: The app retrieves weather data from http://api.openweathermap.org/ based on user input and displays it
+*/
+
+@font-face {
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/icomoon.eot?emb4z4');
+    src: url('../fonts/icomoon.eot?emb4z4#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?emb4z4') format('truetype'), url('../fonts/icomoon.woff?emb4z4') format('woff'), url('../fonts/icomoon.svg?emb4z4#icomoon') format('svg');
+}
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+}
+.icon-01d:before {
+    content: "\e900";
+}
+.icon-01n:before {
+    content: "\e901";
+}
+.icon-02d:before {
+    content: "\e902";
+}
+.icon-02n:before {
+    content: "\e903";
+}
+.icon-03d:before {
+    content: "\e904";
+}
+.icon-03n:before {
+    content: "\e905";
+}
+.icon-04d:before {
+    content: "\e906";
+}
+.icon-04n:before {
+    content: "\e907";
+}
+.icon-09d:before {
+    content: "\e908";
+}
+.icon-09n:before {
+    content: "\e909";
+}
+.icon-10d:before {
+    content: "\e90a";
+}
+.icon-10n:before {
+    content: "\e90b";
+}
+.icon-11d:before {
+    content: "\e90c";
+}
+.icon-11n:before {
+    content: "\e90d";
+}
+.icon-13d:before {
+    content: "\e90e";
+}
+.icon-13n:before {
+    content: "\e90f";
+}
+.icon-50d:before {
+    content: "\e910";
+}
+.icon-50n:before {
+    content: "\e911";
+}
+.icon-404:before {
+    content: "\e912";
+}
+/*** GENERAL STYLES ***/
+html,
+body {
+    background-color: #2c3e50;
+    color: #ffffff;
+    display: block;
+    height: 100%;
+    min-height: 100%;
+}
+/*** CUSTOM STYLES ***/
+.custom-container {
+    height: 100%;
+}
+.weather-panel-container {
+    height: inherit;
+}
+.weather-left-panel {
+    background-color: #34495e;
+    height: inherit;
+    padding-top: 100px;
+}
+.weather-right-panel {
+    background-color: #3498db;
+    height: inherit;
+    overflow-y: scroll;
+}
+.city-search {
+    background-color: #1abc9c;
+    border: none;
+    border-bottom: 5px solid #16a085;
+    color: #34495e;
+    font-size: 24px;
+    line-height: 48px;
+    margin: 10px 0;
+    padding: 0 24px;
+    text-align: center;
+    width: 100%;
+}
+.city-search::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #ffffff;
+}
+.city-search::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ffffff;
+}
+.city-search:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #ffffff;
+}
+.city-search:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ffffff;
+}
+.city-search:focus {
+    border: 1px transparent;
+    border-bottom: 5px solid #16a085;
+    outline: none;
+}
+.reset-history {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+}
+.reset-history-button {
+    background-color: transparent;
+    border: 0;
+    float: right;
+    position: relative;
+}
+.reset-history-button:hover {
+    text-decoration: underline;
+}
+.history-list {
+    float: left;
+    margin: 0;
+    padding: 0;
+    postion: relative;
+    width: 100%;
+}
+.history-link {
+    list-style: none;
+}
+.history-link a {
+    background-color: #e74c3c;
+    color: #ffffff;
+    display: block;
+    margin: 5px 0;
+    padding: 6px 12px;
+    text-align: center;
+}
+.large-weather-icon {
+    font-size: 124px;
+}
+.weather-report-panel {
+    margin: 24px 0;
+}
+/*** LOADING OVERLAY AND MODAL STYLES ***/
+.weather-loading-container {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.weather-loading-overlay {
+    background-color: #28324E;
+    botton: 0;
+    height: 100%;
+    margin-left: -15px;
+    opacity: 0.7;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.weather-loading-modal {
+    botton: 0;
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+}
+.spinner {
+    height: 40px;
+    margin: 25% auto;
+    position: relative;
+    width: 40px;
+}
+.double-bounce1,
+.double-bounce2 {
+    animation: sk-bounce 2.0s infinite ease-in-out;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    background-color: #ffffff;
+    border-radius: 50%;
+    height: 100%;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.double-bounce2 {
+    animation-delay: -1.0s;
+    -webkit-animation-delay: -1.0s;
+}
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
