@@ -1,2 +1,2 @@
 # weatherapp
-one pate weather app
+one page weather app
